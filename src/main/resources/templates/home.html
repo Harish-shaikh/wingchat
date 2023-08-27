@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{base::layout(~{::section})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <section>
+      <div class="sides">
+        <!-- left-side-bar -->
+        <div class="side-navber">
+          <div class="left-content-header">
+            <div class="left-content-img">
+              <img
+                class="profile-photo"
+                th:src="@{'/image/'+${userdata.profileImage}}"
+                alt="profile photo"
+              />
+              <div class="left-content-name mt-2">
+                <h3
+                  id="usernames"
+                  th:data-username="${userdata.name}"
+                  th:text="${userdata.name}"
+                ></h3>
+              </div>
+            </div>
+          </div>
+          <div class="topnav">
+            <div class="search-container">
+              <form>
+                <input type="text" placeholder="Search.." name="search" />
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          </div>
+
+          <div class="listItem">
+            <div class="listItem1">
+              <!-- <h2>
+                Chat with:
+                <span id="recipientUsername">Recipient Username</span>
+              </h2> -->
+
+              <ul>
+                <li th:each="user : ${Friends}">
+                  <div class="left-sidebar-friend-image">
+                    <img
+                      class="profile-photo"
+                      th:src="@{'/image/'+${user.profileImage}}"
+                      alt="profile photo"
+                    />
+                  </div>
+                  <h2
+                    class="connect-button"
+                    th:data-recipient="${user.name}"
+                    th:text="${user.name}"
+                  ></h2>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- End-left-side-bar -->
+        <!-- Right-side-bar -->
+
+        <div class="right-content-detail">
+          <div class="right-content-header">
+            <div class="right-content-img">
+              <img src="" alt="" />
+              <div class="right-content-name mt-3">
+                <h1 id="recipientUsername"></h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-message-input">
+            <div id="chat">
+              <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                  <div id="messages">
+                    <!-- Existing and received messages will be displayed here -->
+                  </div>
+                </div>
+              </div>
+
+              <frm class="d-flex" id="messageForm">
+                <input
+                  class="form-control me-2"
+                  type="text"
+                  id="messageInput"
+                  placeholder="Type a message..."
+                  aria-label="Search"
+                />
+                <button class="btn btn-primary" id="send" type="button">
+                  send
+                </button>
+              </frm>
+            </div>
+          </div>
+        </div>
+        <!-- End-right-side-bar -->
+      </div>
+    </section>
+  </body>
+</html>
